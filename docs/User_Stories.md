@@ -1,65 +1,9 @@
-# King of the Cob
-Agile development doesn't need to be hard, its just needs to be done right!
+# User Stories
 
-Introducing King of the Cob! an AGILE / SCRUM method used for project management, scheduling, tracking and reporting without the need for expensive team management software, run everything from a Raspberry Pi on your network.
+## As a developer, I want to be able to view current work priorities within a defined timeframe "sprint" so that I know what needs to be worked on and what work is coming up that still needs to be done.
 
+### Acceptance Criteria: A developer will be able to log into the service to view the current product backlog of committed items, be able to review what is left in the current sprint and review items in future sprints that have been planned but not committed to just yet. Developers will be able to set which items they are working on, add comments and give status to each item which includes: in-progress, blocked, dependency-hold, QA/QC and complete.
 
-## Installation
-### Hardware Requirements
-* Raspberry Pi 3
-* 64GB SD card
-* Keyboard / Mouse / Monitor for setup
+## As a product owner, I would like a interface I can interact with that allows me to see the status of the projects I am apart of and be able to view what has been completed / left to go. I would also like to set priorities and communicate my thoughts directly to the team without over-reaching active development.
 
-### Software Requirements
-* Latest Raspbian image
-* Python
-```bash
-sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install python -y
-```
-* Caddy service
-```bash
-sudo apt-get update && sudo apt-get upgrade -y
-CADDY_TELEMETRY=on curl https://getcaddy.com | bash -s personal http.jekyll,http.login,http.reauth,http.upload
-```
-* Jekyll service
-```bash
-gem install bundler jekyll
-```
-
-## Getting Started
-Add your site to the caddy file
-```bash
-sudo nano caddyfile
-```
-add the line
-```bash
-:80
-	{
-	root /home/pi/public_html/KingoftheCob
-	errors visible
-}
-```
-
-
-# License
-MIT License
-
-Copyright (c) 2018 Michael Galde
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### Acceptance Criteria: A product owner will be able to log into the service and be able to view work items but not be able to interact directly with current commitments or change workflow directly. Product owner will be able to leave comments which will be visible to the developers so that everyone is aware of any changes. 
