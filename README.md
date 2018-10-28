@@ -10,6 +10,7 @@ When it comes to AGILE management some teams may view this as the best possible 
 ## Project Requirements
 * [User Stories](/docs/User_Stories.md)
 * [Mis-User Stories](/docs/Mis_User_Stories.md)
+* [Diagrams](/docs/diagrams.md)
 
 ## Installation
 ### Hardware Requirements
