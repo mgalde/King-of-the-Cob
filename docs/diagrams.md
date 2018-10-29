@@ -12,3 +12,6 @@
 
 * System Context Diagrams
 ![System Context Diagram](/docs/images/project/SCDKofC.png "System Context Diagram")
+
+* Container Diagrams
+![Container Diagram](/docs/images/project/CDKoC.png "Container Diagram")
