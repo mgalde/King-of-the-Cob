@@ -52,6 +52,9 @@ add the line
 ```
 
 
+# Code of Conduct for King of the Cob Community
+* [Code of Conduct](/docs/CODE_OF_CONDUCT.md)
+
 # License
 MIT License
 
