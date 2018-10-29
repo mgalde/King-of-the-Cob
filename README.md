@@ -4,6 +4,9 @@ Agile development doesn't need to be hard, its just needs to be done right!
 Introducing King of the Cob! an AGILE / SCRUM method used for project management, scheduling, tracking and reporting without the need for expensive team management software, run everything from a Raspberry Pi on your network.
 
 Try it out at https://kingofthecob.com
+<center>
+![King of the Cob](/docs/images/KotC.png "King of the Cob")
+</center>
 
 When it comes to AGILE management some teams may view this as the best possible style or as a hindrance to production. Being able to track work utilizing the AGILE process is a great way to improve the teams efficiency. The problem noticed however is AGILE / SCRUM may be hard to implement if no one has done it before. Some have never even heard of a Kanban board or knows what a sprint is. This project will take the place of the SCRUM-Master for your project and will keep you and your team on track and in good communication. You will find your products will flow more efficiently with correct planning, retrospectives and development support. So why nominate a dedicated SCRUM-master when King-of-the-Cob can do it to!
 
