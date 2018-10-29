@@ -15,3 +15,6 @@
 
 * Container Diagrams
 ![Container Diagram](/docs/images/project/CDKoC.png "Container Diagram")
+
+* Component Diagrams
+![Component Diagram](/docs/images/project/CoDKoC.png "Component Diagram")
