@@ -9503,7 +9503,7 @@
                         n = document.createElement("iframe");
                     return new a["default"](function(r) {
                         n.addEventListener("load", function() {
-                            r(s(t.__proto__ || Object.getPrototypeOf(t), "testMethod", e).call(e, "//cdn3.optimizely.com/js/geo2.js", n.contentWindow))
+                            r(s(t.__proto__ || Object.getPrototypeOf(t), "testMethod", e).call(e, "geo2.js", n.contentWindow))
                         }), document.body.appendChild(n)
                     }).then(function(e) {
                         return n.parentElement && n.parentElement.removeChild(n), e
