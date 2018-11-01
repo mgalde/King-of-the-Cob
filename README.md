@@ -24,33 +24,42 @@ When it comes to AGILE management some teams may view this as the best possible 
 ### Software Requirements
 * Latest Raspbian image
 * Python
+* Django
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install python -y
+sudo pip install Django
 ```
-* Caddy service
+* Download this repo
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
-CADDY_TELEMETRY=on curl https://getcaddy.com | bash -s personal http.jekyll,http.login,http.reauth,http.upload
+git clone https://github.com/mgalde/King-of-the-Cob.git
+cd King-of-the-Cob
+cd Docs
+cd KingoftheCobApp
 ```
-* Jekyll service
+* Start the King-of-the-Cob web service
 ```bash
-gem install bundler jekyll
+python manage.py runserver
 ```
+You should then see something like the following:
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have unapplied migrations; your app may not work properly until they are applied.
+Run 'python manage.py migrate' to apply them.
+
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+
 
 ## Getting Started
-Add your site to the caddy file
+Run the server from the KingoftheCobApp
 ```bash
-sudo nano caddyfile
+python manage.py runserver
 ```
-add the line
-```bash
-:80
-	{
-	root /home/pi/public_html/KingoftheCob
-	errors visible
-}
-```
-
 
 # Code of Conduct for King of the Cob Community
 * [Code of Conduct](/docs/CODE_OF_CONDUCT.md)
