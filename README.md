@@ -16,7 +16,7 @@ When it comes to AGILE management some teams may view this as the best possible 
 * [Diagrams](/docs/diagrams.md)
 
 ## Installation
-### Hardware Requirements
+### Hardware Recommendations
 * Raspberry Pi 3
 * 64GB SD card
 * Keyboard / Mouse / Monitor for setup
