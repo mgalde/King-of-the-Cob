@@ -11,10 +11,11 @@
 ## King of the Cob Architecture diagrams
 
 * System Context Diagrams
-![System Context Diagram](/docs/images/project/SCDKofC.png "System Context Diagram")
+![System Context Diagram](/docs/images/project/System Context Diagram for King of the Cob.png "System Context Diagram")
 
 * Container Diagrams
-![Container Diagram](/docs/images/project/CDKoC.png "Container Diagram")
+![Container Diagram](/docs/images/project/Container Diagram for King of the Cob.png "Container Diagram")
 
 * Component Diagrams
-![Component Diagram](/docs/images/project/CoDKoC.png "Component Diagram")
+![Web Application Component Diagram](/docs/images/project/Component Diagram for King of the Cob Web Application.png "Web Application Component Diagram")
+![API Component Diagram](/docs/images/project/Component Diagram for King of the Cob API.png "API Component Diagram")
