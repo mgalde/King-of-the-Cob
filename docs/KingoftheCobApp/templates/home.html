@@ -9,6 +9,7 @@
   <p><a href="{% url 'password_reset' %}">reset password</a></p>
 {% else %}
   <p>You are not currently logged in to King of the Cob</p>
-  <a href="{% url 'login' %}">login</a>
+  <a href="{% url 'login' %}">login</a><br>
+  <a href="{% url 'signup' %}">Sign up</a>
 {% endif %}
 {% endblock %}

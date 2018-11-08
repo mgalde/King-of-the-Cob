@@ -1,13 +1,13 @@
 <!-- templates/signup.html -->
 {% extends 'base.html' %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}KIng of the Cob Account Sign Up{% endblock %}
 
 {% block content %}
-  <h2>Sign up</h2>
+  <h2>Sign up for a King of the Cob Account</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <button type="submit">Sign up!</button>
   </form>
 {% endblock %}
