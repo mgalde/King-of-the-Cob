@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+
+
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}King of the Cob Login{% endblock %}</title>
-</head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://kingofthecob.com/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://kingofthecob.com/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://kingofthecob.com/images/favicon-16x16.png">
+    <link rel="manifest" href="https://kingofthecob.com/images/site.webmanifest">
+    <link rel="mask-icon" href="https://kingofthecob.com/images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="https://kingofthecob.com/images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="https://kingofthecob.com/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+		<title>King of the Cob!</title>
+	</head>
 <body>
+  <style>
+
+	      body {
+	  background: #222222;
+	  font-family: "Helvetica Neue","Helvetica",Arial,"Lucida   Grande",sans-serif;
+	}
+
+	h3 {
+	  font-size: 1.5em;
+	  font-weight: 100;
+	  letter-spacing: 1em;
+	  text-shadow: 0px 0px 20px #189c1a;
+	  color: #cfd08c;
+	  display: inline-block;
+	}
+
+	.container {
+	  font-size: 16px;
+	  color: #FFFFFF;
+	  text-align: center;
+	}
+
+	    </style>
+
   <main>
+    <body translate="no" >
+  	  <div class="container">
+  		<img src ="https://kingofthecob.com/images/KotC.png" height="400" width="400"><br>
+  		<h3>KING of the COB</h3><br>
+
     {% block content %}
     {% endblock %}
+
+
+    <script src='jquery.min.js'></script>
   </main>
 </body>
 </html>
