@@ -4,7 +4,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Welcome to King of the Cob {{ user.username }}!
+  Welcome to King of the Cob {{ user.username }}!<br>
   <p><a href="{% url 'logout' %}">logout</a></p>
   <p><a href="{% url 'password_reset' %}">reset password</a></p>
 {% else %}
