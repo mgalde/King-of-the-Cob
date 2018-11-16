@@ -1,0 +1,15 @@
+{% extends 'good.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Welcome to King of the Cob {{ user.username }}!<br>
+  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'password_reset' %}">reset password</a></p>
+{% else %}
+  <p>You should not see this, you really should not be here</p>
+  <a href="{% url 'login' %}">login</a><br>
+  <a href="{% url 'signup' %}">Sign up</a>
+{% endif %}
+{% endblock %}
