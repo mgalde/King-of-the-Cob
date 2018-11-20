@@ -24,7 +24,7 @@
 ## Development History
 
 * Working Login Page
-![King of the Cob Login Page](/docs/images/Start Page.png "King of the Cob Start Page")
+![King of the Cob Login Page](/docs/images/StartPage.png "King of the Cob Start Page")
 
 * Account Creation Page
 ![King of the Cob Account Page](/docs/images/AccountPage.png "King of the Cob Account Page")
