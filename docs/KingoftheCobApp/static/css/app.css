@@ -1,0 +1,99 @@
+
+.logo {
+	font-family: 'Clicker Script', cursive;
+}
+
+.logo a {
+	color: #d9d9d9;
+	text-decoration: underline overline wavy yellow;
+}
+
+footer {
+	font-size: .9rem;
+}
+
+footer a {
+	color: #d9d9d9;
+}
+
+.list-group-formset label {
+	display: none;
+}
+
+.list-group-formset .form-group,
+.list-group-formset .invalid-feedback {
+	margin-bottom: 0;
+}
+
+.list-group-formset .form-control {
+	padding: .25rem .5rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	border-radius: .2rem;
+}
+
+.btn-developer {
+	color: #d6f5f5;
+	background-color: #248f8f;
+	border-color: #0a2929;
+}
+
+.btn-developer:hover,
+.btn-developer:active {
+	color: #6699ff;
+	background-color: #003399;
+	border-color: #b3ccff;
+}
+
+.btn-owner {
+	color: #ffcce6;
+	background-color: #99004d;
+	border-color: #ff3399;
+}
+
+.btn-owner:hover,
+.btn-owner:active {
+	color: #ffe6cc;
+	background-color: #b35900;
+	border-color: #b35900;
+}
+
+.btn-scrummaster {
+	color: #f5e6ff;
+	background-color: #4c0080;
+	border-color: #1f0033;
+}
+
+.btn-scrummaster:hover,
+.btn-scrummaster:active {
+	color: #e6ffcc;
+	background-color: #66cc00;
+	border-color: #1a3300;
+}
+
+.has-danger .radio,
+.has-danger .checkbox {
+	color: #dc3545;
+}
+
+.has-danger .invalid-feedback {
+	display: block;
+}
+body {
+		background: #222222;
+		font-family: "Helvetica Neue","Helvetica",Arial,"Lucida   Grande",sans-serif;
+	}
+
+
+
+	h3 {
+		font-size: 1.5em;
+		font-weight: 100;
+		letter-spacing: 1em;
+	}
+
+	.container {
+		font-size: 16px;
+		color: #000000;
+		text-align: center;
+	}

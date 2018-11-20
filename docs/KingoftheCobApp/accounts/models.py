@@ -1,6 +1,6 @@
-from django.db import models
-from django.contrib.auth.models import User, AbstractUser
-from datetime import date
+from django.db import models, migrations
+from django.contrib.auth.models import AbstractUser
+
 from django.utils.html import escape, mark_safe
 
 # Create your models here.
@@ -20,3 +20,8 @@ class Points(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+
+class User(AbstractUser):
+    is_developer = models.BooleanField(default=False)
+    is_owner = models.BooleanField(default=False)
+    is_scrumaster = models.BooleanField(default=False)

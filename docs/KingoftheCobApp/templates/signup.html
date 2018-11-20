@@ -1,13 +1,9 @@
-<!-- templates/signup.html -->
 {% extends 'base.html' %}
 
-{% block title %}KIng of the Cob Account Sign Up{% endblock %}
-
 {% block content %}
-  <h2>Sign up for a King of the Cob Account</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up!</button>
-  </form>
+  <h2>Sign up for a free account</h2>
+  <p class="lead">Select below the type of account you want to create</p>
+  <a href="{% url 'developer_signup' %}" class="btn btn-developer btn-lg" role="button">I'm a Developer</a>
+  <a href="{% url 'owner_signup' %}" class="btn btn-owner btn-lg" role="button">I'm a Project Owner</a>
+  <a href="{% url 'scrumaster_signup' %}" class="btn btn-scrummaster btn-lg" role="button">I'm a SCRUM Master</a>
 {% endblock %}
