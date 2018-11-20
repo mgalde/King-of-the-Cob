@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'crispy_forms',
     'KingoftheCobApp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -113,5 +114,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 AUTH_USER_MODEL = 'accounts.User'           # This is important to use my own user permission models
 LOGIN_REDIRECT_URL = 'connected'            # Once a user connects they go to the connected URL
-LOGOUT_REDIRECT_URL = 'home'                # Everyone goes home once loged out 
+LOGOUT_REDIRECT_URL = 'home'                # Everyone goes home once loged out
 CRISPY_TEMPLATE_PACK = 'bootstrap4'         # Looks nicer in this template, can be changed if you wish

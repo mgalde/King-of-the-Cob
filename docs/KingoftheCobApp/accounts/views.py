@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
 from .models import User
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -22,6 +22,10 @@ from django.db import migrations
 from .decorators import scrumaster_required, owner_required, developer_required
 from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
 from .models import User
+# Using Charts in Django
+from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 # This is where a user can select the type of user to sign up as
 class SignUp(TemplateView):
@@ -71,3 +75,23 @@ class ScrumasterSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('connected')
+
+
+# Working with charts in Django
+
+def get_data(request, *args, **kwargs):
+    data = {
+        "task_score": 5,
+        "task_value": 10,
+    }
+    return JsonResponse(data)
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+    def get(self, request, format=None):
+        data = {
+            "task_score": 5,
+            "task_value": 10,
+        }
+        return Response(data)
