@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from accounts.views import get_data, ChartData
 
 # Defining home and connected url views for easier use
 urlpatterns = [
@@ -26,4 +27,6 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('connected/', TemplateView.as_view(template_name='connected.html'), name='connected'),
     url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/data/$', get_data, name='api-data'),
+    url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
 ]
