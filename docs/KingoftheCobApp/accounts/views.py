@@ -17,18 +17,17 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
 from .models import User
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView)
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from django.db import migrations
 from .decorators import scrumaster_required, owner_required, developer_required
 from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
 from .models import User
 
-
+# This is where a user can select the type of user to sign up as
 class SignUp(TemplateView):
     template_name = 'signup.html'
 
-
+# This defines developer user and assignes the user as a developer
 class DeveloperSignUpView(CreateView):
     model = User
     form_class = DeveloperSignUpForm
@@ -43,6 +42,7 @@ class DeveloperSignUpView(CreateView):
         login(self.request, user)
         return redirect('connected')
 
+# This defines the Owner user and assignes the user as a Product Owner
 class OwnerSignUpView(CreateView):
     model = User
     form_class = OwnerSignUpForm
@@ -57,6 +57,7 @@ class OwnerSignUpView(CreateView):
         login(self.request, user)
         return redirect('connected')
 
+# This defines the Scrumaster user and assignes the user as a SCRUM Master
 class ScrumasterSignUpView(CreateView):
     model = User
     form_class = ScrumasterSignUpForm
