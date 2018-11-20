@@ -47,7 +47,7 @@
             </div>
             <div class="col-6 text-right">
               {% if user.is_authenticated %}
-                <p class="pt-3"><font color="ffeb99">{{ user_type }} Logged in as <strong><font color="ccff99">{{ user.username }}</strong></font>. <a href="{% url 'logout' %}" class="btn btn-danger" role="button">Log Out</a></p>
+                <p class="pt-3"><font color="ffeb99">{{ user_type }} Logged in as</font> <strong><font color="ccff99">{{ user.username }}</strong></font>. <a href="{% url 'logout' %}" class="btn btn-danger" role="button">Log Out</a></p>
               {% else %}
                 <a href="{% url 'login' %}" class="btn btn-light" role="button">Log in</a>
                 <a href="{% url 'signup' %}" class="btn btn-primary" role="button">Sign up</a>
