@@ -1,6 +1,7 @@
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import user_passes_test
 
+# This sets developer permissions
 def developer_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     '''
     Decorator for views that checks that the logged in user is a developer,
@@ -15,6 +16,7 @@ def developer_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, l
         return actual_decorator(function)
     return actual_decorator
 
+# This sets Owner permissions
 def owner_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     '''
     Decorator for views that checks that the logged in user is a owner,
@@ -29,6 +31,7 @@ def owner_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login
         return actual_decorator(function)
     return actual_decorator
 
+# This sets SCRUM Master Permissions 
 def scrumaster_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     '''
     Decorator for views that checks that the logged in user is a SCRUM master,

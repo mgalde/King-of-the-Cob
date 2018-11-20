@@ -8,6 +8,7 @@ from django.db import models, migrations
 from django.utils.html import escape, mark_safe
 from .models import User
 
+# This defines how a developer is signed up
 class DeveloperSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
@@ -19,6 +20,7 @@ class DeveloperSignUpForm(UserCreationForm):
             user.save()
         return user
 
+# This defines how a product owner is signed up
 class OwnerSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
@@ -30,6 +32,7 @@ class OwnerSignUpForm(UserCreationForm):
             user.save()
         return user
 
+# This defines how a SCRUM master is signed up
 class ScrumasterSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User

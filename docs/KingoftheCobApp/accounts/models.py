@@ -21,6 +21,7 @@ class Points(models.Model):
         """String for representing the Model object."""
         return self.name
 
+# This defines the User types and assignes them to the propper user format. This replaces Django User model and the settings need to reflect this
 class User(AbstractUser):
     is_developer = models.BooleanField(default=False)
     is_owner = models.BooleanField(default=False)

@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# Added Chrispy Forms for view
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -94,7 +96,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
+# Set local Time Zone
 TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
@@ -109,7 +111,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = 'connected'
-LOGOUT_REDIRECT_URL = 'home'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+AUTH_USER_MODEL = 'accounts.User'           # This is important to use my own user permission models
+LOGIN_REDIRECT_URL = 'connected'            # Once a user connects they go to the connected URL
+LOGOUT_REDIRECT_URL = 'home'                # Everyone goes home once loged out 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'         # Looks nicer in this template, can be changed if you wish
