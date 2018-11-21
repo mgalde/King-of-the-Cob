@@ -26,3 +26,11 @@ class User(AbstractUser):
     is_developer = models.BooleanField(default=False)
     is_owner = models.BooleanField(default=False)
     is_scrumaster = models.BooleanField(default=False)
+
+class Note(models.Model):
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s %s' % (self.title, self.body)
