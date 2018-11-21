@@ -4,55 +4,218 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Welcome to King of the Cob {{ user.username }}!<br>
-  {% if user.is_developer %}
-  <br><canvas id="myChart" content="width=device-width, initial-scale=1, shrink-to-fit=yes"></canvas>
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: 'Content',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
+	var endpoint = '/api/chart/data'
+	var defaultdata = []
+	var labels = []
+	var remainingHours = []
+	var sprint = []
+	var sprintLength = []
+	var actualBurnData = []
+	$.ajax({
+		method: "GET",
+		url: endpoint,
+		success: function(data){
+			labels = data.labels
+			defaultdata = data.default
+			remainingHours = data.hours
+			sprint = data.sprint
+			sprintLength = data.sprint.length
+			actualBurnData = data.burn
+			actualBurnDays = actualBurnData.length
+			remainingDay = sprintLength - actualBurnDays
+			console.log(data)
+			setChart()
+		},
+		error: function(error_data){
+			console.log("error")
+			console.log(error_data)
+		}
+
+	})
+</script>
+	Welcome to King of the Cob {{ user.username }}!<br>
+	{% if user.is_developer %}
+	<br><canvas id="developer_chart" content="width=device-width, initial-scale=1, shrink-to-fit=yes"></canvas>
+<script>
+	function setChart(){
+		var ctx = document.getElementById("developer_chart");
+		var developer_chart = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: {
+						labels: labels,
+						datasets: [{
+								label: 'Content',
+								data: defaultdata,
+								backgroundColor: [
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(153, 102, 255, 0.2)',
+										'rgba(255, 159, 64, 0.2)'
+								],
+								borderColor: [
+										'rgba(255,99,132,1)',
+										'rgba(54, 162, 235, 1)',
+										'rgba(255, 206, 86, 1)',
+										'rgba(75, 192, 192, 1)',
+										'rgba(153, 102, 255, 1)',
+										'rgba(255, 159, 64, 1)'
+								],
+								borderWidth: 3
+						}]
+				},
+				options: {
+						scales: {
+								yAxes: [{
+										ticks: {
+												beginAtZero:true
+										}
+								}]
+						}
+				}
+		});
+	}
+
 </script>
 {% elif user.is_owner %}
 
 {% elif user.is_scrumaster %}
+<br><canvas id="scrum_chart" content="width=device-width, initial-scale=1, shrink-to-fit=yes"></canvas>
+<script>
+	function setChart(){
+		var averageBurnValue, expectedBurnValue
+		var startWork = true
+		var actualData = generageActualData()
+		var averageData = generateAverageData()
+		var expectedData = generateExpectedData()
+
+	function generageActualData() {
+		return actualBurnData.map(function(x) {
+			return remainingHours - (+x);
+		});
+	}
+
+	function generateAverageData() {
+		var sum = 0;
+		actualBurnData.forEach(function(value) {
+			sum += value;
+		});
+		var average = sum / actualBurnDays;
+		averageBurnValue = average;
+		startWork = average > 0;
+		var data = [];
+		i = 0;
+		while (true && startWork) {
+			data[i] = remainingHours - average * (i+1);
+			if (data[i] <= 0) break;
+			i++;
+		}
+		return data;
+	}
+
+	function generateExpectedData() {
+		var data = [];
+		data[actualBurnDays - 1] = actualData[actualBurnDays - 1];
+		var rate = (data[actualBurnDays - 1] - 0) / remainingDay;
+		expectedBurnValue = rate;
+		for (var i = actualBurnDays; i < sprintLength - 1; i++) {
+			data[i] = data[i - 1] - rate;
+		}
+		data[sprintLength - 1] = 0;
+		return data;
+	}
+
+	var ChartData = {
+			labels: sprint.concat(['...', '...', '...']),
+			datasets: [{
+					type: 'bar',
+					label: 'Actual',
+					backgroundColor: "rgba(54, 162, 235, 0.2)",
+					data: actualData,
+					borderColor: 'rgba(54, 162, 235, 1)',
+					borderWidth: 2
+			}, {
+					type: 'line',
+					tension: 0,
+					label: 'Average (Velocity)',
+					backgroundColor: "rgba(255,99,132, 0)",
+					data: averageData,
+					borderColor: "rgba(255,99,132,1)",
+					borderWidth: 2
+			}, {
+					type: 'line',
+					tension: 0,
+					label: 'Expected (Velocity)',
+					backgroundColor: "rgba(255,99,132, 0)",
+					data: expectedData,
+					borderColor: "rgba(255, 206, 86, 1)",
+			}
+		]
+	};
+
+	window.onload = function() {
+			var ctx = document.getElementById("scrum_chart").getContext("2d");
+			window.myBar = new Chart(ctx, {
+					type: 'bar',
+					data: ChartData,
+					options: {
+							responsive: true,
+							title: {
+									display: true,
+									text: 'Burndown Chart'
+							},
+							scales: {
+									yAxes: [{
+											ticks: {
+												max: remainingHours,
+												min: 0,
+											},
+											display: true,
+											scaleLabel: {
+													display: true,
+													labelString: 'Hours'
+											}
+									}]
+							},
+							tooltips: {
+									enabled: true,
+									mode: 'single',
+									callbacks: {
+											label: function(tooltipItems, data) {
+													switch (tooltipItems.datasetIndex) {
+														case 0:
+															return remainingHours - (+tooltipItems.yLabel) + ' hr';
+														case 1:
+															return averageBurnValue + ' hr / day';
+														default:
+															return expectedBurnValue + ' hr / day';
+															break;
+													}
+											},
+											title: function(tooltipItems) {
+													switch (tooltipItems[0].datasetIndex) {
+														case 0:
+															return 'Actual ' + '(' + tooltipItems[0].xLabel + ')';
+														case 1:
+															return 'Average (Velocity)';
+														default:
+															return 'Expected (Velocity)';
+															break;
+													}
+											},
+									}
+							},
+					}
+			});
+	};
+}
+</script>
 
 {% else %}
 <glitch>
-  <h3>
+	<h3>
 I have no idea who you are but you are not one of my users, you should not be here. This is akward .....
 </h3>
 Most likely you are loged into admin which dosent exist anymore
@@ -60,7 +223,7 @@ Most likely you are loged into admin which dosent exist anymore
 <img src ="https://kingofthecob.com/images/KotC.png" height="500" width="500"><br><img src ="https://kingofthecob.com/images/KotC.png" height="500" width="500"><br><img src ="https://kingofthecob.com/images/KotC.png" height="500" width="500"><br><img src ="https://kingofthecob.com/images/KotC.png" height="500" width="500"><br>
 </glitch>
 <script >
-  // Glitch Line Vars
+	// Glitch Line Vars
 var glitch_lines = 15,
 glitch_line_duration_min = 100,
 glitch_line_duration_max = 500,
@@ -110,26 +273,26 @@ $('body').css('overflow-x', 'hidden');
 linecount = 0;
 this.glitchlines = [];
 while (linecount < glitch_lines) {
-  $('body').append('<div class="glitch-line-'+linecount+'">'+page_content+'</div>');
-  $('.glitch-line-'+linecount).css({
-    'height': '100%',
-    'width': '100%',
-    'position': 'absolute',
-    'top': '0',
-    'left': '0'
-  }).hide();
-  this.glitchline('.glitch-line-'+linecount, linecount);
-  linecount++;
+	$('body').append('<div class="glitch-line-'+linecount+'">'+page_content+'</div>');
+	$('.glitch-line-'+linecount).css({
+		'height': '100%',
+		'width': '100%',
+		'position': 'absolute',
+		'top': '0',
+		'left': '0'
+	}).hide();
+	this.glitchline('.glitch-line-'+linecount, linecount);
+	linecount++;
 }
 // Glitch Move
 $('body').append('<div class="glitch-div-1">'+page_content+'</div>');
 $('body').append('<div class="glitch-div-2">'+page_content+'</div>');
 $('.glitch-div-1, .glitch-div-2').css({
-  'height': '100%',
-  'width': '100%',
-  'position': 'absolute',
-  'top': '0',
-  'left': '0'
+	'height': '100%',
+	'width': '100%',
+	'position': 'absolute',
+	'top': '0',
+	'left': '0'
 });
 this.glitchmove();
 }
@@ -150,26 +313,26 @@ this.start = function() {
 selfmove = this;
 // Create a move on a regular duration
 setInterval(function() {
-  // Wait a random number of ms to execute
-  setTimeout(function() {
-    // Create animation
-    selfmove.move();
-  }, randomInt(glitch_move_wait_min, glitch_move_wait_max));
+	// Wait a random number of ms to execute
+	setTimeout(function() {
+		// Create animation
+		selfmove.move();
+	}, randomInt(glitch_move_wait_min, glitch_move_wait_max));
 }, randomInt(glitch_move_timer_min, glitch_move_timer_max));
 }
 this.move = function() {
 // Move the divs a random number of pixels top & left, change the color & opacity.
 $('.glitch-div-1').css({
-  'left': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
-  'top': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
-  'opacity': glitch_move_opacity,
-  'color': glitch_move_color_1
+	'left': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
+	'top': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
+	'opacity': glitch_move_opacity,
+	'color': glitch_move_color_1
 });
 $('.glitch-div-2').css({
-  'left': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
-  'top': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
-  'opacity': glitch_move_opacity,
-  'color': glitch_move_color_2
+	'left': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
+	'top': randomInt(glitch_move_amount_min, glitch_move_amount_max) + 'px',
+	'opacity': glitch_move_opacity,
+	'color': glitch_move_color_2
 });
 // Prepare to move divs back
 this.moveback();
@@ -177,13 +340,13 @@ this.moveback();
 this.moveback = function() {
 // Move the divs back after a random time duration
 this.timeout = setTimeout(function() {
-  // Make sure we set the text back to the original color!
-  $('.glitch-div-1, .glitch-div-2').css({
-    'left': '0px',
-    'top': '0px',
-    'color': glitch_move_original_color,
-    'opacity': '1',
-  });
+	// Make sure we set the text back to the original color!
+	$('.glitch-div-1, .glitch-div-2').css({
+		'left': '0px',
+		'top': '0px',
+		'color': glitch_move_original_color,
+		'opacity': '1',
+	});
 }, randomInt(glitch_move_duration_min, glitch_move_duration_max));
 }
 }
@@ -194,23 +357,23 @@ selfline = this;
 this.timeouts = [];
 // Create a move on a regular duration
 setInterval(function() {
-  // Wait a random number of ms to execute
-  setTimeout(function() {
-    selfline.add(div);
-  }, randomInt(glitch_line_wait_min, glitch_line_wait_max));
+	// Wait a random number of ms to execute
+	setTimeout(function() {
+		selfline.add(div);
+	}, randomInt(glitch_line_wait_min, glitch_line_wait_max));
 }, randomInt(glitch_line_timer_min, glitch_line_timer_max));
 }
 this.add = function(div) {
 // change the height, width, top, and left using a random number
 $(div).css({
-  'height': randomInt(glitch_line_height_min, glitch_line_height_max) + 'px',
-  'width': randomInt($(window).width()/2, $(window).width()) + 'px',
-  'top': randomInt(0, $(window).height()) + 'px',
-  'left': randomInt(0, $(window).width()/2) + 'px',
-  'position': 'fixed',
-  'overflow': 'hidden',
-  'display': 'block',
-  'background': '#FFF'
+	'height': randomInt(glitch_line_height_min, glitch_line_height_max) + 'px',
+	'width': randomInt($(window).width()/2, $(window).width()) + 'px',
+	'top': randomInt(0, $(window).height()) + 'px',
+	'left': randomInt(0, $(window).width()/2) + 'px',
+	'position': 'fixed',
+	'overflow': 'hidden',
+	'display': 'block',
+	'background': '#FFF'
 });
 // Set random scroll top & scroll left.
 $(div).scrollTop(randomInt(0, $(window).height()));
@@ -221,7 +384,7 @@ this.remove(div);
 this.remove = function(div) {
 // Hide the div at a random time interval.
 this.timeouts[div] = setTimeout(function() {
-  $(div).hide();
+	$(div).hide();
 }, randomInt(glitch_line_duration_min, glitch_line_duration_max));
 }
 }
@@ -230,11 +393,11 @@ this.timeouts[div] = setTimeout(function() {
 {% endif %}
 
 <br>
-  <p><a href="{% url 'logout' %}">logout</a></p>
-  <p><a href="{% url 'password_reset' %}">reset password</a></p>
+	<p><a href="{% url 'logout' %}">logout</a></p>
+	<p><a href="{% url 'password_reset' %}">reset password</a></p>
 {% else %}
-  <p>You should not see this, you really should not be here</p>
-  <a href="{% url 'login' %}">login</a><br>
-  <a href="{% url 'signup' %}">Sign up</a>
+	<p>You should not see this, you really should not be here</p>
+	<a href="{% url 'login' %}">login</a><br>
+	<a href="{% url 'signup' %}">Sign up</a>
 {% endif %}
 {% endblock %}

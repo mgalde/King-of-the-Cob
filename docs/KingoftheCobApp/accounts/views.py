@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db import models, migrations
@@ -27,6 +27,8 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+
+User = get_user_model()
 
 # This is where a user can select the type of user to sign up as
 class SignUp(TemplateView):
@@ -90,9 +92,19 @@ def get_data(request, *args, **kwargs):
 class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
+
     def get(self, request, format=None):
+        qs_count = User.objects.all().count()
+        labels = ["Users"]
+        default_items = [qs_count]
+        hours = 80
+        sprint = ["Sunday", "Monday", "Tueday", "Wednesday", "Thusday", "Friday", "Saturday"]
+        actualBurnData = [0, 1, 6, 12, 17, 22]
         data = {
-            "task_score": 5,
-            "task_value": 10,
+            "labels": labels,
+            "default": default_items,
+            "hours": hours,
+            "sprint": sprint,
+            "burn": actualBurnData,
         }
-        return Response(data)
+        return JsonResponse(data)

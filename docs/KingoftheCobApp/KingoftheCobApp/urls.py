@@ -26,7 +26,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('connected/', TemplateView.as_view(template_name='connected.html'), name='connected'),
-    url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/data/$', get_data, name='api-data'),
     url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
 ]
