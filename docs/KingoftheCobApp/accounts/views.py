@@ -21,12 +21,15 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 from django.db import migrations
 from .decorators import scrumaster_required, owner_required, developer_required
 from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
-from .models import User
+from .models import User, Note
 # Using Charts in Django
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+
+from tastypie.resources import ModelResource
+from tastypie.authorization import Authorization
 
 User = get_user_model()
 
@@ -108,3 +111,11 @@ class ChartData(APIView):
             "burn": actualBurnData,
         }
         return JsonResponse(data)
+
+
+
+class NoteResource(ModelResource):
+    class Meta:
+        queryset = Note.objects.all()
+        resource_name = 'note'
+        authorization = Authorization()

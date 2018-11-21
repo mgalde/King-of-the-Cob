@@ -3,9 +3,6 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from . import views, resources
 from .views import get_data, ChartData
-from .resources import NoteResource
-
-note_resource = NoteResource()
 
 urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
@@ -15,5 +12,4 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/data/$', get_data, name='api-data'),
     url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
-    url(r'^api/notes/', include(note_resource.urls)),
 ]
