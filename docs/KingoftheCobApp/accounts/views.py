@@ -30,8 +30,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .serializers import NoteSerializer, TaskSerializer
 
-from tastypie.resources import ModelResource
-from tastypie.authorization import Authorization
 
 User = get_user_model()
 

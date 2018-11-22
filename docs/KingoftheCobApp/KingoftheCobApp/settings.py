@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'KingoftheCobApp',
     'rest_framework',
-    'tastypie',
 ]
 
 MIDDLEWARE = [
