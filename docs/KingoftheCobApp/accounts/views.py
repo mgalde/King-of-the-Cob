@@ -25,8 +25,10 @@ from .models import User, Note
 # Using Charts in Django
 from django.http import JsonResponse
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from .serializers import NoteSerializer
 
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
@@ -112,7 +114,9 @@ class ChartData(APIView):
         }
         return JsonResponse(data)
 
-
+class NoteView(viewsets.ModelViewSet):
+        queryset = Note.objects.all()
+        serializer_class = NoteSerializer
 
 class NoteResource(ModelResource):
     class Meta:

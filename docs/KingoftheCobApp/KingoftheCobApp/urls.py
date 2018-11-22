@@ -17,7 +17,12 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from accounts import views, resources
 from accounts.views import get_data, ChartData
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('Notes', views.NoteView)
 
 # Defining home and connected url views for easier use
 urlpatterns = [
@@ -28,4 +33,5 @@ urlpatterns = [
     path('connected/', TemplateView.as_view(template_name='connected.html'), name='connected'),
     url(r'^api/data/$', get_data, name='api-data'),
     url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
+    path('api/note/', include(router.urls)),
 ]

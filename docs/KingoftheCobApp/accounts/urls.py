@@ -2,7 +2,11 @@ from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls import url, include
 from . import views, resources
-from .views import get_data, ChartData
+from .views import get_data, ChartData, NoteView
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('Notes', views.NoteView)
 
 urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
@@ -12,4 +16,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/data/$', get_data, name='api-data'),
     url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
+    path('api/note/', include(router.urls)),
 ]
