@@ -21,14 +21,14 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 from django.db import migrations
 from .decorators import scrumaster_required, owner_required, developer_required
 from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
-from .models import User, Note
+from .models import User, Note, Task
 # Using Charts in Django
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import NoteSerializer
+from .serializers import NoteSerializer, TaskSerializer
 
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
@@ -118,8 +118,6 @@ class NoteView(viewsets.ModelViewSet):
         queryset = Note.objects.all()
         serializer_class = NoteSerializer
 
-class NoteResource(ModelResource):
-    class Meta:
-        queryset = Note.objects.all()
-        resource_name = 'note'
-        authorization = Authorization()
+class TaskView(viewsets.ModelViewSet):
+        queryset = Task.objects.all()
+        serializer_class = TaskSerializer

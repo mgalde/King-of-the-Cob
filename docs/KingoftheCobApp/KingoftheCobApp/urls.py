@@ -23,6 +23,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('Notes', views.NoteView)
+router.register('Tasks', views.TaskView)
 
 # Defining home and connected url views for easier use
 urlpatterns = [
@@ -33,5 +34,5 @@ urlpatterns = [
     path('connected/', TemplateView.as_view(template_name='connected.html'), name='connected'),
     url(r'^api/data/$', get_data, name='api-data'),
     url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
-    path('api/note/', include(router.urls)),
+    path('api/workhorse/', include(router.urls)),
 ]
