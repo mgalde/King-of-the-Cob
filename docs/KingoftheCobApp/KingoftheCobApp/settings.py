@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
+
+
+@Author: Michael Galde <mgalde>
+@Email:  KingCob@kingofthecob.com
+@Copyright: Copyright (C) 2018 Michael Galde
 """
 
 import os
@@ -21,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*3c@e3)6r=7%w@&9gfbp279o*s(!+8=@x_hf-^1qg$w*6z0v)c'
+SECRET_KEY = '<insert your own secret key here when you deploy KingoftheCob>'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
