@@ -23,6 +23,7 @@ class User(AbstractUser):
     is_owner = models.BooleanField(default=False)
     is_scrumaster = models.BooleanField(default=False)
 
+# This is used to create notes to the different teams
 class Note(models.Model):
     title = models.CharField(max_length=200, help_text='Enter a Title for the Note (e.g. ATTN Developers)')
     body = models.TextField(help_text='Enter your message here (e.g. Hello World, here I am!!)')
