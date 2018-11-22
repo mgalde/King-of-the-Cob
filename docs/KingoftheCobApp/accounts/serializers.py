@@ -9,4 +9,4 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
-        fields = ('id', 'url', 'event', 'points', 'created_at')
+        fields = ('id', 'url', 'event', 'points', 'description', 'created_at')

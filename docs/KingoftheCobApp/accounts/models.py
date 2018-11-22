@@ -1,18 +1,21 @@
 from django.db import models, migrations
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.html import escape, mark_safe
 
 # Create your models here.
 
+# This will be used to develop the tasks
 class Task(models.Model):
     """Model representing a Event or Task."""
-    event = models.CharField(max_length=200, help_text='Enter a Task (e.g. Create Project)')
-    points = models.IntegerField(help_text='Enter a Value between 1 to 100')
+    event = models.CharField(max_length=100, help_text='Enter a Task (e.g. Create Project)')
+    points = models.IntegerField(help_text='Enter a Value between 1 to 100', validators=[MaxValueValidator(100), MinValueValidator(1)])
+    description = models.TextField(default='I need to enter something here', help_text='Explain the task here (e.g. This task will help me do X, Y and Z)')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """String for representing the Model object."""
-        return '%s %s' % (self.task, self.points)
+        return '%s %s %s' % (self.task, self.points, self.description)
 
 # This defines the User types and assignes them to the propper user format. This replaces Django User model and the settings need to reflect this
 class User(AbstractUser):
