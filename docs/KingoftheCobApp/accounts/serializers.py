@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Note
 
-class NoteSerializer(serializers.ModelSerializer):
+class NoteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Note
-        fields = ('id', 'title', 'body', 'created_at')
+        fields = ('id', 'url', 'title', 'body', 'created_at')
