@@ -1,7 +1,10 @@
+from __future__ import unicode_literals
 from django.db import models, migrations
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import *
 from django.utils.html import escape, mark_safe
+import base64
+
 
 # Create your models here.
 
@@ -16,6 +19,16 @@ class Task(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return '%s %s %s' % (self.task, self.points, self.description)
+
+class Event(models.Model):
+    eventtype = models.CharField(max_length=1000, blank=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    userid = models.CharField(max_length=1000, blank=True)
+    requestor = models.GenericIPAddressField(blank=False)
+
+    def __str__(self):
+        return str(self.eventtype, self.timestamp, self.userid, self.requestor)
+
 
 # This defines the User types and assignes them to the propper user format. This replaces Django User model and the settings need to reflect this
 class User(AbstractUser):
