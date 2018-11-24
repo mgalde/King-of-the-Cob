@@ -28,11 +28,18 @@ data.forEach(task => {
   description.textContent = "Description: " + task.description;
   const create_date = document.createElement('created_at');
   create_date.textContent = "Creation Date: " + task.created_at;
+  var a = document.createElement('a');
+  var linkText = document.createTextNode("Info about task: " + task.id);
+  a.appendChild(linkText);
+  a.title = task.event;
+  a.href = task.url;
   container2.appendChild(card);
   card.appendChild(h1);
   card.appendChild(points);
   card.appendChild(description);
   card.appendChild(create_date);
+  card.appendChild(a);
+
 });
 } else {
 console.log('error');
