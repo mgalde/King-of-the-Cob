@@ -18,7 +18,7 @@ class Task(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return '%s %s %s' % (self.task, self.points, self.description)
+        return '%s %s' % (self.event, self.description)
 
 class Event(models.Model):
     eventtype = models.CharField(max_length=1000, blank=False)

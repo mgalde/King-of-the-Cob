@@ -119,3 +119,5 @@ class NoteView(viewsets.ModelViewSet):
 class TaskView(viewsets.ModelViewSet):
         queryset = Task.objects.all()
         serializer_class = TaskSerializer
+        def get(self, request, format=None):
+            return JsonResponse()

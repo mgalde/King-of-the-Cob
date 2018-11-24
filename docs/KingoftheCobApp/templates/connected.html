@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -24,7 +23,7 @@
 			actualBurnData = data.burn
 			actualBurnDays = actualBurnData.length
 			remainingDay = sprintLength - actualBurnDays
-			console.log(data)
+			//console.log(data)
 			setChart()
 		},
 		error: function(error_data){
@@ -36,6 +35,11 @@
 </script>
 	Welcome to King of the Cob {{ user.username }}!<br>
 	{% if user.is_developer %}
+		<div id="root">
+			<div class="container2">
+			</div>
+		</div>
+		<script src="/static/js/calltasks.js"></script>
 	<br><canvas id="developer_chart" content="width=device-width, initial-scale=1, shrink-to-fit=yes"></canvas>
 <script>
 	function setChart(){
@@ -79,6 +83,7 @@
 	}
 
 </script>
+
 {% elif user.is_owner %}
 
 {% elif user.is_scrumaster %}
