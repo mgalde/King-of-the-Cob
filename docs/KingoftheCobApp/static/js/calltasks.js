@@ -44,7 +44,7 @@ data.forEach(task => {
 } else {
 console.log('error');
 const errorMessage = document.createElement('marquee');
-errorMessage.textContent = `Gah, it's not working!`;
+errorMessage.textContent = `Gah, tasks are not working!`;
 app.appendChild(errorMessage);
 }
 }

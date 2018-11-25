@@ -106,20 +106,43 @@ body {
 	  display: flex;
 	  flex-wrap: wrap;
 	}
-
+	#notes {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.container3 {
+	  display: flex;
+	  flex-wrap: wrap;
+		text-align: center;
+	}
 	.card {
 	  margin: 1rem;
 	  border: 1px solid gray;
 	}
-
+	.notecard {
+		margin: 1rem;
+		border: 5px solid gray;
+	}
 	@media screen and (min-width: 600px) {
-	  .card {
+	  .notecard {
 	    flex: 1 1 calc(50% - 2rem);
 	  }
 	}
 
 	@media screen and (min-width: 900px) {
-	  .card {
+	  .notecard {
 	    flex: 1 1 calc(33% - 2rem);
+	  }
+	}
+
+	@media screen and (min-width: 500px) {
+	  .card {
+	    flex: 1 1 calc(50% - 2rem);
+	  }
+	}
+
+	@media screen and (min-width: 800px) {
+	  .card {
+	    flex: 1 1 calc(44% - 2rem);
 	  }
 	}
