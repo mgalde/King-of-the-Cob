@@ -42,8 +42,50 @@
 		</div>
 		<script src="/static/js/calltasks.js"></script>
 Assign new tasks below:<br>
-<br>
+<form id="ticket-create">
+	<p>
+		<label>Ticket Title</label>:<br>
+		<input type='text' name="title">
+		</p>
+	<p>
+		<label>Ticket Details</label>:<br>
+		<input type='text' name="details"size="90%">
+		</p>
+	<p>
+		<label>Points Assigned</label>:<br>
+		<input type='number' name="points" min="1" max="100">
+		</p>
+	<p>
+		<label>Submit to project</label>:<br>
+		<input type='submit' value='submit'>
+		</p>
+</form>
+<script>
+	var sendticket = new XMLHttpRequest();
+	var form = document.getElementById('ticket-create');
+	var ticketevent = form.title;
+	var ticketpoints = form.points;
+	var ticketdescription = form.details;
+	form.onsubmit = function(event){
+		event.preventDefault();
+		console.log(ticketevent.value);
+		console.log(ticketpoints.value);
+		console.log(ticketdescription.value);
+		form.reset();
+	// Set up our request
+	  sendticket.open('POST', 'http://127.0.0.1:8000/api/workhorse/Tasks/');
 
+	  // Add the required HTTP header for form data POST requests
+	  sendticket.setRequestHeader('Content-Type', 'application/json');
+
+	  // Finally, send our data.
+	  sendticket.send(
+        JSON.stringify(
+				ticketevent.value + ticketpoints.value + ticketdescription.value)
+			);
+	};
+// https://www.youtube.com/watch?v=ZA1brjm7zDA
+	</script>
 Notes from the Product Owner:
 <div id="notes">
 	<div class="container3"><br>
