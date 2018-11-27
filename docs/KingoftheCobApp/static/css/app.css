@@ -7,7 +7,18 @@
 	color: #d9d9d9;
 	text-decoration: underline overline wavy yellow;
 }
-
+.progress {
+  background-color: #4783c2;
+  height: 4px;
+  overflow: visible;
+}
+.determinate {
+  background-color: #ffffff;
+}
+span {
+  opacity: 0.7;
+  font-weight: 300;
+}
 footer {
 	font-size: .9rem;
 }

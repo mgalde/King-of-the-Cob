@@ -21,9 +21,12 @@
 		<script src='https://kingofthecob.com/Chart.bundle.js'></script>
 		<script src='https://kingofthecob.com/Chart.js'></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+
 	</head>
 <body>
 	{% if user.is_authenticated %}
+	<div class="col m12 l9 s12 skill-line a5 wow fadeIn" data-wow-delay="0.5s">
 	<ul>
   <li><a class="active" href="#home">Welcome {{ user.username }}</a></li>
   <li><a href="/">Home</a></li>
@@ -37,7 +40,27 @@
 	<li><a href="/api/workhorse/Notes/">Edit Notes</a></li>
 	{% endif %}
   <li><a href="{% url 'logout' %}" class="btn btn-danger" role="button">Log Out</a></li>
+	<li><br>
+		<span>Sprint 1:</span>
+		<div class="progress">
+		<div class="determinate"> 55%
+		</div>
+	</div></li>
+	<li><br>
+		<span>Sprint 2:</span>
+		<div class="progress">
+		<div class="determinate"> 15%
+		</div>
+	</div></li>
+	<li><br>
+		<span>Sprint 3:</span>
+		<div class="progress">
+		<div class="determinate"> 0%
+		</div>
+	</div></li>
 </ul>
+</div>
+
 {% endif %}
 	<div class="container my-4">
       <div class="row justify-content-center">
@@ -102,5 +125,7 @@
         $('[data-toggle="tooltip"]').tooltip();
       })
     </script>
+		<script src="/static/js/init.js"></script>
+		<script src="/static/js/wow.js"></script>
   </body>
 </html>
