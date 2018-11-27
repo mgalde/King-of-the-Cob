@@ -36,6 +36,10 @@ data.forEach(note => {
   notecard.appendChild(h1);
   notecard.appendChild(space());
   notecard.appendChild(infograb);
+  notecard.appendChild(space());
+  notecard.appendChild(create_date);
+  notecard.appendChild(space());
+  notecard.appendChild(a);
 
 });
 } else {

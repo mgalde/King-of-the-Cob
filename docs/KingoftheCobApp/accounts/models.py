@@ -14,6 +14,7 @@ class Task(models.Model):
     event = models.CharField(max_length=100, help_text='Enter a Task (e.g. Create Project)')
     points = models.IntegerField(help_text='Enter a Value between 1 to 100', validators=[MaxValueValidator(100), MinValueValidator(1)])
     description = models.TextField(default='I need to enter something here', help_text='Explain the task here (e.g. This task will help me do X, Y and Z)')
+    status = models.IntegerField(help_text='Enter a % between 1 to 100', default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

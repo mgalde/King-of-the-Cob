@@ -3,45 +3,16 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<script>
-	var endpoint = '/api/chart/data'
-	var defaultdata = []
-	var labels = []
-	var remainingHours = []
-	var sprint = []
-	var sprintLength = []
-	var actualBurnData = []
-	$.ajax({
-		method: "GET",
-		url: endpoint,
-		success: function(data){
-			labels = data.labels
-			defaultdata = data.default
-			remainingHours = data.hours
-			sprint = data.sprint
-			sprintLength = data.sprint.length
-			actualBurnData = data.burn
-			actualBurnDays = actualBurnData.length
-			remainingDay = sprintLength - actualBurnDays
-			//console.log(data)
-			//setChart()
-		},
-		error: function(error_data){
-			console.log("error")
-			console.log(error_data)
-		}
 
-	})
-</script>
 	Welcome to King of the Cob {{ user.username }}!<br>
 	{% if user.is_developer %}
-	Below are the tasks currently assigned to this project:<br>
+	<br>Below are the tasks currently assigned to this project:<br>
 		<div id="root">
 			<div class="container2">
 			</div>
 		</div>
-		<script src="/static/js/calltasks.js"></script>
-Assign new tasks below:<br>
+		<script src="/static/js/calltasksdeveloper.js"></script>
+<br>Assign new tasks below:<br>
 <iframe name="formDestination" style="width:0;height:0;border:0; border:none;"></iframe>
 <form action="http://127.0.0.1:8000/api/workhorse/Tasks/" form id="ticket-create" method="post" target="formDestination" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
     {% csrf_token %}
@@ -58,11 +29,14 @@ Assign new tasks below:<br>
 			<input type='number' name="points" min="1" max="100">
 			</p>
 
+		<p>
+				<label>Precent Complete %</label>:<br>
+				<input type='number' name="status" min="0" max="100">
+				</p>
+
     <input type="submit" value="Submit">
 </form>
-
-
-Notes from the Product Owner:
+<br>Notes from the Product Owner:
 <div id="notes">
 	<div class="container3"><br>
 	</div>
@@ -82,7 +56,7 @@ Below are the tasks currently assigned to this project:<br>
 		<div class="container3"><br>
 		</div>
 	</div>
-	<script src="/static/js/callnotes.js"></script>
+	<script src="/static/js/callnotesowner.js"></script>
 	<br>
 	Send a new note to the team:
 	<iframe name="formDestination" style="width:0;height:0;border:0; border:none;"></iframe>
@@ -106,14 +80,14 @@ Below are the tasks currently assigned to this project:<br>
 		<div class="container2">
 		</div>
 	</div>
-	<script src="/static/js/calltasks.js"></script>
+	<script src="/static/js/calltasksdeveloper.js"></script>
 	<br>
 	Below are the notes that have been sent to the team:
 	<div id="notes">
 		<div class="container3"><br>
 		</div>
 	</div>
-	<script src="/static/js/callnotes.js"></script>
+	<script src="/static/js/callnotesowner.js"></script>
 	<br>
 
 

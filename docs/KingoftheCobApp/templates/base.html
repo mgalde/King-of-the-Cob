@@ -23,6 +23,22 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
 	</head>
 <body>
+	{% if user.is_authenticated %}
+	<ul>
+  <li><a class="active" href="#home">Welcome {{ user.username }}</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/connected">Dashboard</a></li>
+	{% if user.is_developer %}
+	<li><a href="/api/workhorse/Tasks/">Edit Tickets</a></li>
+	{% elif user.is_owner %}
+	<li><a href="/api/workhorse/Notes/">Edit Notes</a></li>
+	{% elif user.is_scrumaster %}
+	<li><a href="/api/workhorse/Tasks/">Edit Tickets</a></li>
+	<li><a href="/api/workhorse/Notes/">Edit Notes</a></li>
+	{% endif %}
+  <li><a href="{% url 'logout' %}" class="btn btn-danger" role="button">Log Out</a></li>
+</ul>
+{% endif %}
 	<div class="container my-4">
       <div class="row justify-content-center">
         <div class="col-md-10 col-sm-12">
@@ -32,6 +48,7 @@
                 <a href="{% url 'home' %}">
                   <img src ="https://kingofthecob.com/images/KotC.png" height="50" width="50"> King of the Cob
                   {% if user.is_authenticated %}
+
                     {% if user.is_developer %}
                       <i class="fas fa-balance-scale"></i></h1></a><font color="ffeb99"> Developer User</font>
                     {% elif user.is_owner %}
@@ -66,8 +83,8 @@
               {% endfor %}
               {% block content %}
               {% endblock %}
-            </div>
           </div>
+				</div>
           <footer>
             <a href="https://KingoftheCob.com">© KingoftheCob.com</a>
             /

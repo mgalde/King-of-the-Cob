@@ -40,6 +40,8 @@ data.forEach(task => {
   card.appendChild(points);
   card.appendChild(status);
   card.appendChild(description);
+  card.appendChild(create_date);
+  card.appendChild(a);
 
 });
 } else {
