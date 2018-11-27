@@ -20,10 +20,10 @@ from .models import User
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from django.db import migrations
 from .decorators import scrumaster_required, owner_required, developer_required
-from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm
+from .forms import DeveloperSignUpForm, OwnerSignUpForm, ScrumasterSignUpForm, TicketForm
 from .models import User, Note, Task
 # Using Charts in Django
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -121,3 +121,21 @@ class TaskView(viewsets.ModelViewSet):
         serializer_class = TaskSerializer
         def get(self, request, format=None):
             return JsonResponse()
+
+def create_ticket(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = TicketForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = TicketForm()
+
+    return render(request, 'connected', {'form': form})
