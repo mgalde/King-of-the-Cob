@@ -52,3 +52,6 @@
 
 * Owner Note View
 ![King of the Cob Note View](/docs/images/project/OwnerNoteView.png "King of the Cob Owner Note View")
+
+* Developer Note View
+![King of the Cob Developer Note View](/docs/images/project/DeveloperNoteView.png "King of the Cob Developer Note View")
