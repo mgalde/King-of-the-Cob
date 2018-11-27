@@ -55,3 +55,9 @@
 
 * Developer Note View
 ![King of the Cob Developer Note View](/docs/images/project/DeveloperNoteView.png "King of the Cob Developer Note View")
+
+* SCRUM Master Account Creation Page
+![King of the Cob SCRUM Master Account Page](/docs/images/project/SCRUMasterSignUp.png "King of the Cob SCRUM Master Account Page")
+
+* SCRUM Master Dashboard Page
+![King of the Cob SCRUM Master Dashboard Page](/docs/images/project/SCRUMasterDashboard.png "King of the Cob SCRUM Master Dashboard")
