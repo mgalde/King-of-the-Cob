@@ -49,3 +49,6 @@
 
 * Developer Note Create
 ![King of the Cob Note Creation Method](/docs/images/project/OwnerNoteCreation.png "King of the Cob Owner Note Create")
+
+* Owner Note View
+![King of the Cob Note View](/docs/images/project/OwnerNoteView.png "King of the Cob Owner Note View")
