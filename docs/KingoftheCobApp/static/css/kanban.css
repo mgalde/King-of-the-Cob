@@ -1,0 +1,191 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 5px;
+  background: black;
+}
+
+
+.todo {
+  grid-column: 1/2;
+  grid-row: auto;
+  border-bottom: 2px solid #666;
+}
+
+.unscheduled {
+  grid-column: 1/2;
+  grid-row: auto;
+}
+
+.in-progress {
+  grid-column: 2/3;
+  grid-row: 1/7;
+}
+
+.ready-for-review {
+  grid-column: 3/4;
+  grid-row: 1/7;
+}
+
+.done {
+  grid-column: 4/5;
+  grid-row: 1/7;
+}
+
+.board {
+  background-color: #f0f0f0;
+  padding: 5px;
+}
+
+.card {
+  background: #AEA4E2;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 2px #888;
+  overflow: auto;
+  position: relative;
+}
+
+
+.name {
+  margin: 12px 0 5px 12px;
+  padding: 5px;
+  text-align: left;
+}
+
+.heading {
+  margin-top: 0;
+  padding: 10px 10px;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 0.0525em;
+  font-weight: bolder;
+  font-size: 1rem;
+  text-shadow: 1px 1px 1px #4a4a4a;
+  text-align: center;
+  background-image: linear-gradient(#82a8bf, #669bbc);
+  color: white;
+}
+
+a {
+  padding: 0;
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #669bbc;
+  /* cursor: pointer; */
+}
+
+.category {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.bug {
+  border-left: 4px solid #F25F5C;
+}
+
+.feature {
+  border-left: 4px solid #FFE066;
+}
+
+.chore {
+  border-left: 4px solid #669bbc;
+}
+
+.warn {
+  background: #FFD8E0;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  float: right;
+  color: #555;
+  padding: 4px 8px 6px 8px;
+  border-radius: 50vh;
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+
+
+}
+
+.estimate {
+  font-size: 0.75rem;
+  min-width: 13px;
+  float: right;
+  background: #9ED1E4;
+  color: #FCFCFC;
+  position: absolute;
+  bottom: 1px;
+  right: 12px;
+  border-radius: 100%;
+  padding: 4px;
+  text-align: center;
+}
+
+.estimate:empty {
+  visibility: hidden;
+}
+
+.accepted {
+  background: #D9EFD1;
+}
+
+.started {
+  background: #F3F3D4;
+
+}
+
+.unstarted {
+  background: #F4F4F4;
+
+}
+
+.unscheduled {
+  background: #F4F4F4;
+}
+
+.finished {
+  background: #E4EFF7;
+}
+
+.rejected {
+  background: #F08B89;
+}
+
+
+@media only screen and (max-width: 650px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .todo {
+    grid-column: 1/2;
+    grid-row: auto;
+  }
+  .unscheduled {
+    grid-column: 1/2;
+    grid-row: auto;
+  }
+  .in-progress {
+    grid-column: 1/2;
+    grid-row: auto;
+  }
+  .ready-for-review {
+    grid-column: 1/2;
+    grid-row: auto;
+    grid-row: auto;
+  }
+  .done {
+    grid-column: 1/2;
+    grid-row: auto;
+  }
+}

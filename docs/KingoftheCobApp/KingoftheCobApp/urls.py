@@ -32,6 +32,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('connected/', TemplateView.as_view(template_name='connected.html'), name='connected'),
+    path('kanban/', TemplateView.as_view(template_name='kanban.html'), name='kanban'),
     url(r'^api/data/$', get_data, name='api-data'),
     url(r'^api/chart/data/$', ChartData.as_view(), name='api-chart-data'),
     path('api/workhorse/', include(router.urls)),
