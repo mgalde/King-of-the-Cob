@@ -1,27 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link rel="stylesheet" href="/static/css/kanban.css">
-{% if user.is_authenticated %}
-<div class="kanban">
-    <div class="todo board js-board" data-status="unstarted" data-accepts="unstarted">
-      <p class="heading">To Do</p>
-    </div>
-    <div class="board js-board unscheduled" data-status="unscheduled" data-accepts="unscheduled">
+<h2><img src ="https://kingofthecob.com/images/KotC.png" height="100" width="100"> Kanban board! <img src ="https://kingofthecob.com/images/KotC.png" height="100" width="100"></h2>
 
+{% if user.is_authenticated %}
+<link rel="stylesheet" href="/static/css/kanban.css">
+<div class="kanban">
+    <div class="todo js-board board" data-status="unstarted" data-accepts="unstarted unscheduled">
+      <p class="heading">To Do</p>
     </div>
 
     <div class="in-progress js-board board" data-status="started" data-accepts="started rejected ">
       <p class="heading">In Progress</p>
     </div>
+
     <div class="ready-for-review js-board board" data-status="finished" data-accepts="finished">
       <p class="heading">Ready For Review</p>
     </div>
+
     <div class="done js-board board" data-status="accepted" data-accepts="accepted delivered">
       <p class="heading">Done</p>
     </div>
+    
   </div>
   <script src="/static/js/axios.js"></script>
   <script src="/static/js/kanban.js"></script>
+{% else %}
+A Kanban board is one of the tools that can be used to implement Kanban to manage work at the personal or organizational level.
+Kanban boards show how work moves from left to right, with each column representing a stage of the overall process,
+or to be more precise the system that is visualized by the board
 {% endif %}
 {% endblock %}
