@@ -25,9 +25,14 @@ When it comes to AGILE management some teams may view this as the best possible 
 * Latest Raspbian image
 * Python
 * Django
+* Crispy Forms
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install python -y
 sudo pip install Django
+pip install --upgrade django-crispy-forms
+pip install djangorestframework
+pip install markdown
+pip install django-filter
 ```
 * Download this repo
 ```bash
@@ -39,6 +44,8 @@ cd KingoftheCobApp
 ```
 * Start the King-of-the-Cob web service
 ```bash
+python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver
 ```
 You should then see something like the following:
