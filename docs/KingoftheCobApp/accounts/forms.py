@@ -47,6 +47,7 @@ class ScrumasterSignUpForm(UserCreationForm):
             user.save()
         return user
 
+# This is used to define the API 
 class TicketForm(forms.Form):
     ticketevent = forms.CharField(label='Ticket Title : ', max_length=100, help_text='Enter a Task (e.g. Create Project)')
     ticketpoints = forms.IntegerField(label='Ticket Points : ', validators=[MaxValueValidator(100), MinValueValidator(1)])

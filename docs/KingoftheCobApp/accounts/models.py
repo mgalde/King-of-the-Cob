@@ -8,9 +8,9 @@ import base64
 
 # Create your models here.
 
-# This will be used to develop the tasks
+# This will be used to develop the tasks for the api
 class Task(models.Model):
-    """Model representing a Event or Task."""
+    """Choice selection"""
     STATE_CHOICES = (
     ('unscheduled', 'unscheduled'),
     ('unstarted', 'unstarted'),
@@ -26,11 +26,11 @@ class Task(models.Model):
     description = models.TextField(default='I need to enter something here', help_text='Explain the task here (e.g. This task will help me do X, Y and Z)')
     created_at = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         """String for representing the Model object."""
         return '%s %s' % (self.event, self.description)
 
+# This is more of a model for my models, a holdover from previous labs
 class Event(models.Model):
     eventtype = models.CharField(max_length=1000, blank=False)
     timestamp = models.DateTimeField(auto_now_add=True)
