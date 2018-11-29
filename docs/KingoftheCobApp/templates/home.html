@@ -3,6 +3,12 @@
 {% block content %}
 <h2><img src ="https://kingofthecob.com/images/KotC.png" height="100" width="100"> Welcome to King of the Cob! <img src ="https://kingofthecob.com/images/KotC.png" height="100" width="100"></h2>
 {% if user.is_authenticated %}
+<p class="lead">
+  Welcome to King of the Cob! <br>
+  Please select a page on the left for a user experience!<br>
+  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'password_reset' %}">reset password</a></p>
+  </p>
 
 {% else %}
 
