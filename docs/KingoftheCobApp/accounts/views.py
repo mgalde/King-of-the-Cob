@@ -83,59 +83,14 @@ class ScrumasterSignUpView(CreateView):
         return redirect('connected')
 
 
-# Working with charts in Django
-
-def get_data(request, *args, **kwargs):
-    data = {
-        "task_score": 5,
-        "task_value": 10,
-    }
-    return JsonResponse(data)
-
-class ChartData(APIView):
-    authentication_classes = []
-    permission_classes = []
-
-    def get(self, request, format=None):
-        qs_count = User.objects.all().count()
-        labels = ["Users"]
-        default_items = [qs_count]
-        hours = 80
-        sprint = ["Sunday", "Monday", "Tueday", "Wednesday", "Thusday", "Friday", "Saturday"]
-        actualBurnData = [0, 1, 6, 12, 17, 22]
-        data = {
-            "labels": labels,
-            "default": default_items,
-            "hours": hours,
-            "sprint": sprint,
-            "burn": actualBurnData,
-        }
-        return JsonResponse(data)
-
+@method_decorator([login_required], name='dispatch')
 class NoteView(viewsets.ModelViewSet):
         queryset = Note.objects.all()
         serializer_class = NoteSerializer
 
+@method_decorator([login_required], name='dispatch')
 class TaskView(viewsets.ModelViewSet):
         queryset = Task.objects.all()
         serializer_class = TaskSerializer
         def get(self, request, format=None):
             return JsonResponse()
-
-def create_ticket(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = TicketForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = TicketForm()
-
-    return render(request, 'connected', {'form': form})
