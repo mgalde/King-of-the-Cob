@@ -146,7 +146,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "..", "www", "static"),]
 AUTH_USER_MODEL = 'accounts.User'           # This is important to use my own user permission models
 LOGIN_REDIRECT_URL = 'connected'            # Once a user connects they go to the connected URL
 LOGOUT_REDIRECT_URL = 'home'                # Everyone goes home once loged out
