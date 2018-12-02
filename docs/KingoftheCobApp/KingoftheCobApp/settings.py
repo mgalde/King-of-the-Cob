@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'KingoftheCobApp',
     'rest_framework',
+    'django_bleach',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +90,11 @@ WSGI_APPLICATION = 'KingoftheCobApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'iotd',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

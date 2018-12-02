@@ -14,6 +14,7 @@
 		<script src="/static/js/calltasksdeveloper.js"></script>
 <br>Assign new tasks below:<br>
 <iframe name="formDestination" style="width:0;height:0;border:0; border:none;"></iframe>
+
 <form action="http://127.0.0.1:8000/api/workhorse/Tasks/" form id="ticket-create" method="post" target="formDestination" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
     {% csrf_token %}
 		<p>
@@ -28,7 +29,7 @@
 			<label>Points Assigned</label>:<br>
 			<input type='number' name="points" min="1" max="100">
 			</p>
-			
+
     <input type="submit" value="Submit">
 </form>
 <br>Notes from the Product Owner:
