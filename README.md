@@ -3,7 +3,7 @@ Agile development doesn't need to be hard, its just needs to be done right!
 
 Introducing King of the Cob! an AGILE / SCRUM method used for project management, scheduling, tracking and reporting without the need for expensive team management software, run everything from a Raspberry Pi on your network.
 
-Try it out at https://kingofthecob.com
+Try it out at http://live.kingofthecob.com/
 
 ![King of the Cob](/docs/images/KotC.png "King of the Cob")
 
