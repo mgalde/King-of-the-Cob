@@ -61,3 +61,10 @@
 
 * SCRUM Master Dashboard Page
 ![King of the Cob SCRUM Master Dashboard Page](/docs/images/project/SCRUMasterDashboard.png "King of the Cob SCRUM Master Dashboard")
+
+* 2 Week deployment status
+![King of the Cob deployment Status](/docs/images/project/Deployment_Status.png "King of the Cob Deployment Status")
+
+
+* Deployment Dashboard
+![King of the Cob deployment Dashboard](/docs/images/project/Deployment_Dashboard.png "King of the Cob Deployment Dashboard")
