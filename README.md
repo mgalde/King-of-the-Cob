@@ -62,11 +62,113 @@ Quit the server with CONTROL-C.
 
 
 
-## Getting Started
-Run the server from the KingoftheCobApp
+## Getting Started & Deployment
+Test it out locally by running the server from the KingoftheCobApp directory
 ```bash
 python manage.py runserver
 ```
+
+The application is Elastic Beanstalk ready, you just need to make a few minor changes.
+
+Within settings.py change the following:
+```bash
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '<insert your own secret key here when you deploy KingoftheCob>'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
+```
+
+```bash
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'make anything up in here that would be known only to your orginization'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['AWS internal link', 'your external link, subdomain or what have you']
+```
+
+Additionally also change
+```bash
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'kotc',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
+
+To:
+```bash
+
+if 'internal database name here' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'kotc',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+
+```
+
+Finally change
+```bash
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+AUTH_USER_MODEL = 'accounts.User'           # This is important to use my own user permission models
+LOGIN_REDIRECT_URL = 'connected'            # Once a user connects they go to the connected URL
+LOGOUT_REDIRECT_URL = 'home'                # Everyone goes home once loged out
+CRISPY_TEMPLATE_PACK = 'bootstrap4'         # Looks nicer in this template, can be changed if you wish
+
+```
+
+To:
+```bash
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+AUTH_USER_MODEL = 'accounts.User'           # This is important to use my own user permission models
+LOGIN_REDIRECT_URL = 'connected'            # Once a user connects they go to the connected URL
+LOGOUT_REDIRECT_URL = 'home'                # Everyone goes home once loged out
+CRISPY_TEMPLATE_PACK = 'bootstrap4'         # Looks nicer in this template, can be changed if you wish
+
+```
+
 
 # Code of Conduct for King of the Cob Community
 * [Code of Conduct](/docs/CODE_OF_CONDUCT.md)
