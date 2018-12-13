@@ -169,6 +169,23 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'         # Looks nicer in this template, can 
 
 ```
 
+Generate a new text document at the header of the project titled requirements.txt
+
+```text
+bleach==3.0.2
+Django==2.1.1
+django-bleach==0.3.0
+django-crispy-forms==1.7.2
+django-filter==2.0.0
+djangorestframework==3.9.0
+Markdown==3.0.1
+pytz==2018.7
+six==1.11.0
+webencodings==0.5.1
+```
+
+Finally go within the project and change all hardcoded links to adjust for the new web address
+
 
 # Code of Conduct for King of the Cob Community
 * [Code of Conduct](/docs/CODE_OF_CONDUCT.md)
